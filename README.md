@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+# Application Front-end Practicum Final Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project has been solely developed by me as a final project for Front-end Practicum course. <br/>
+ [Github](https://github.com/Kadd0). <br/>
+ [LinkedIn](https://tr.linkedin.com/in/kadirorhunkavraz).
 
 ## Available Scripts
 

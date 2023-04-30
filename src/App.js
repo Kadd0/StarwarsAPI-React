@@ -1,24 +1,40 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Cards from './components/Cards';
+import CardDetails from './components/CardDetails';
+import InputContext from './context/InputContext';
+import Intro from './components/Intro';
 import './App.css';
 
 function App() {
+
+  const [searchValue, setSearchValue] = useState(''); // Create a state for the search value
+  const [showIntro, setShowIntro] = useState(true); // Create a state for the intro screen
+
+  const contextValue = {  
+    searchValue,
+    setSearchValue,
+  };
+
+  const handleSkip = () => {  // Create a function to handle the skip button
+    setShowIntro(false); // Set the showIntro state to false
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <InputContext.Provider value={contextValue}> 
+      {showIntro ? (
+        <Intro onSkip={handleSkip} />
+      ) : (
+        <div className="App">
+          <Router>
+            <Routes>
+              <Route path="/" element={<Cards />} />
+              <Route path="/CardDetails/:name" element={<CardDetails />} />
+            </Routes>
+          </Router>
+        </div>
+      )}
+    </InputContext.Provider>
   );
 }
 
